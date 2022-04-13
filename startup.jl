@@ -15,3 +15,7 @@ catch e
     @warn "Error initializing Revise" exception=(e, catch_backtrace())
 end
 
+# utility
+ls(x) = readdir(x)
+ls() = readdir()
+

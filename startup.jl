@@ -18,4 +18,6 @@ end
 # utility
 ls(x) = readdir(x)
 ls() = readdir()
-
+ty(x) = typeof(x)
+fn(x) = fieldnames(x)
+fnty = fn ∘ ty

@@ -21,3 +21,10 @@ ls() = readdir()
 ty(x) = typeof(x)
 fn(x) = fieldnames(x)
 fnty = fn ∘ ty
+
+function kill_julia_workers() 
+    julia_worker_procs = filter(x->occursin("--bind-to", x) && occursin("--worker", x), split(read(`pgrep -af julia`, String), "\n"))
+    just_worker_pids = map(x->split(x, " ")[1], julia_worker_procs)
+    worker_kill_command = `kill $just_worker_pids`
+    (julia_worker_procs, worker_kill_command)
+end
